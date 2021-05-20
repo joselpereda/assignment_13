@@ -107,8 +107,5 @@ window.addEventListener('load', () => {
         } 
         slideshow.setSpeed(newSpeed);
         console.log(newSpeed);
-  
-        //account = bankAccount(acctHolderName);
-        //document.getElementById('cust_name').innerHTML = `Account Holder Name: ${account.getOwnerName()}`;
     }
 });
