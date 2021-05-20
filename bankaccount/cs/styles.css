@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "helvetica neue", sans-serif;
+    color: #777;
+    line-height: 1.6;
+}
+fieldset {
+    color: #888;
+    border-radius: .2em;
+    width: 40%;
+    border: #ccc solid 1px;
+}
+button[type="button"] {
+    background-color: #099;
+    color: #fff;
+}
