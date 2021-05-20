@@ -7,6 +7,9 @@ const createSlideshow = function () {
     // PRIVATE VARIABLES AND FUNCTIONS
     let timer;
     let play = true;
+
+    // PRIVATE SPEED VARIABLE
+    let speed = 2000;
     
     let nodes = { image: null, caption: null };
     let img = { cache: [], counter: 0 };
@@ -33,6 +36,14 @@ const createSlideshow = function () {
     };
     // PUBLIC METHODS THAT HAVE ACCESS TO PRIVATE VARIABLES AND FUNCTIONS
     return {
+        // PUPLIC METHOD TO GET VALUE OF SLIDESHOW SPEED GLOBAL VARIABLE
+        getSpeed: function () {
+            return speed;
+        },
+        // PULBIC METHOD TO SET NEW VALUE FOR SLIDESHOW SPEED GLOBAL VARIABLE
+        setSpeed: function (newSpeedValue) {
+            speed = newSpeedValue;
+        },
         loadImages: function (slides) {
             var image;
             for (let i = 0; i < slides.length; i++) {
@@ -44,11 +55,12 @@ const createSlideshow = function () {
             return this;
         },
         startSlideShow: function () {
+
             if (arguments.length === 2) {
                 nodes.image = arguments[0];
                 nodes.caption = arguments[1];
             }
-            timer = setInterval(displayNextImage, 2000);
+            timer = setInterval(displayNextImage, speed);
             return this;
         },
         createToggleHandler: function () {
@@ -85,4 +97,18 @@ window.addEventListener('load', () => {
     slideshow.loadImages(slides).startSlideShow($('image'), $('caption'));
     // PAUSE THE SLIDESHOW
     $('play_pause').onclick = slideshow.createToggleHandler();
+
+    // When the user clicks the button, a prompt should appear that has the current speed shown and allows the user to change it to a different speed.
+    document.getElementById('play_spped').onclick = function(e){
+        let newSpeed = parseInt(prompt(`The current slide show speed is ${slideshow.getSpeed()}. Enter a new speed as a whole integer value:`));
+
+        while ((newSpeed <= 0) || isNaN(newSpeed) || !Number.isInteger(newSpeed)) {
+            newSpeed = parseInt(prompt('Enter a valid speed as a whole integer'));
+        } 
+        slideshow.setSpeed(newSpeed);
+        console.log(newSpeed);
+  
+        //account = bankAccount(acctHolderName);
+        //document.getElementById('cust_name').innerHTML = `Account Holder Name: ${account.getOwnerName()}`;
+    }
 });
