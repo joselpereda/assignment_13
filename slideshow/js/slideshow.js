@@ -106,6 +106,6 @@ window.addEventListener('load', () => {
             newSpeed = parseInt(prompt('Enter a valid speed as a whole integer'));
         } 
         slideshow.setSpeed(newSpeed);
-        console.log(newSpeed);
+        //console.log(newSpeed);
     }
 });
